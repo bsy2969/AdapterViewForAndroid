@@ -3,21 +3,30 @@ package com.bay.adpterviewtest;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "AdapterViewtest";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int a=4/2;
+        ArrayList<String> dataArray = new ArrayList<String>();
+        final String dataFormat = "data_%d";
+        for(int i=0; i< 99; ++i){
+            dataArray.add(String.format(dataFormat,i));
+        }
 
-        Log.d(TAG, "안녕하세요!!");
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>( this, android.R.layout.simple_list_item_1,dataArray);
+        ListView listView=(ListView)findViewById(R.id.listView);
+        listView.setAdapter(adapter);
 
-        String str2=String.format("a=%d",a);
-        int d = Log.d(TAG, str2);
 
 
     }
